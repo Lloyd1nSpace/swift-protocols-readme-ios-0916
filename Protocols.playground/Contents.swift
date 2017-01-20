@@ -2,10 +2,13 @@
 
 import UIKit
 
-
-
-class Person {
+protocol PrettyDescription {
     
+    var description: String { get }
+    
+}
+
+struct Person: PrettyDescription {
     var name: String
     var height: Double
     var favoriteFood: String
@@ -30,20 +33,14 @@ print(jim.description)
 //Favorite Food: Pasta
 
 
-
-protocol PrettyDescription {
-    
-    var description: String { get }
-    
-}
-
-
-
-class Animal {
-    
+struct Animal: PrettyDescription {
     var name: String
     var height: Double
     var favoriteFood: String
+    
+    var description: String {
+        return "Name; \(self.name), Height: \(self.height), Fave Food: \(self.favoriteFood)"
+    }
     
     init(name: String, height: Double, favoriteFood: String) {
         self.name = name
@@ -53,12 +50,6 @@ class Animal {
     
 }
 
-let prettyThings: [PrettyDescription] = []
-
-for prettyThing in prettyThings {
-    
-    print(prettyThing.description)
-    
-}
-
+let zep = Animal(name: "Zeppelin", height: 22, favoriteFood: "Biscuits")
+print(zep.description)
 
